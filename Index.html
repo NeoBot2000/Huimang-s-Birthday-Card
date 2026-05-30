@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💜</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+
+    /* PHOTO + PURPLE BLEND */
+    background-image:
+    linear-gradient(
+    rgba(45,15,90,0.80),
+    rgba(65,25,120,0.80),
+    rgba(95,40,180,0.80),
+    rgba(140,80,255,0.80)
+    ),
+    url("HuimangXNeo.jpeg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+/* GLOW OVERLAY */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+    circle at center,
+    rgba(192,132,252,0.18),
+    transparent 65%
+    );
+
+    backdrop-filter:blur(3px);
+    z-index:0;
+}
+
+/* STARS */
+
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
+
+.stars::before{
+    content:"✨ ✦ ✨ ✦ ✨ ✦ ✨ ✦ ✨ ✦ ✨";
+    position:absolute;
+    width:100%;
+    height:100%;
+    font-size:26px;
+    opacity:.45;
+    animation:sparkle 18s linear infinite;
+}
+
+@keyframes sparkle{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-100vh);
+    }
+}
+
+/* INTRO CARD */
+
+.card{
+    position:relative;
+    z-index:2;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    padding:35px;
+    border-radius:30px;
+
+    text-align:center;
+    max-width:380px;
+
+    box-shadow:
+    0 0 35px rgba(168,85,247,.45),
+    0 0 80px rgba(168,85,247,.2);
+
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+h1{
+    color:#f5eaff;
+    font-size:32px;
+
+    text-shadow:
+    0 0 10px #c084fc,
+    0 0 25px #a855f7;
+}
+
+p{
+    margin-top:15px;
+    line-height:1.8;
+    color:white;
+}
+
+.heart{
+    font-size:30px;
+    margin-top:18px;
+
+    animation:pulse 1.5s infinite;
+
+    text-shadow:
+    0 0 10px #c084fc,
+    0 0 20px #a855f7,
+    0 0 40px #9333ea;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.25);
+    }
+}
+
+button{
+    margin-top:25px;
+    padding:14px 28px;
+
+    border:none;
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #c084fc,
+    #9333ea
+    );
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+
+    box-shadow:
+    0 0 20px #c084fc,
+    0 0 40px #9333ea;
+}
+
+/* PHONE */
+
+.phone{
+    display:none;
+
+    position:relative;
+    z-index:2;
+
+    width:340px;
+    height:650px;
+
+    border-radius:36px;
+    overflow:hidden;
+
+    border:2px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 40px rgba(168,85,247,.6),
+    0 0 100px rgba(168,85,247,.3);
+
+    background:url("Neo Rae Moments.jpeg");
+    background-size:cover;
+    background-position:center;
+
+    flex-direction:column;
+}
+
+/* PHONE OVERLAY */
+
+.phone::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(45,15,90,.45),
+    rgba(45,15,90,.15)
+    );
+
+    z-index:1;
+    pointer-events:none;
+}
+
+/* HEADER */
+
+.header{
+    height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+    font-size:18px;
+
+    color:white;
+
+    background:rgba(60,20,110,.6);
+
+    backdrop-filter:blur(10px);
+
+    z-index:2;
+}
+
+/* CHAT */
+
+.chat{
+    flex:1;
+
+    padding:15px;
+    overflow-y:auto;
+
+    background:rgba(20,10,40,.20);
+    backdrop-filter:blur(4px);
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:2;
+}
+
+/* MESSAGES */
+
+.message{
+    max-width:75%;
+    padding:12px 16px;
+    margin:8px 0;
+
+    border-radius:20px;
+    font-size:15px;
+
+    animation:pop .25s ease;
+}
+
+.me{
+    align-self:flex-end;
+
+    background:
+    linear-gradient(
+    135deg,
+    #d8b4fe,
+    #9333ea
+    );
+
+    color:white;
+
+    border-bottom-right-radius:5px;
+
+    box-shadow:
+    0 0 15px rgba(192,132,252,.6);
+}
+
+.typing{
+    background:rgba(255,255,255,.85);
+    color:#444;
+    font-style:italic;
+}
+
+@keyframes pop{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="card" id="card">
+
+    <h1>Happy Birthday 💜✨</h1>
+
+    <p>
+        To my amazing Huimang,<br><br>
+        I made something special for you... 🥹💜<br>
+        Just a tiny reminder of how much you mean to me.
+    </p>
+
+    <div class="heart">💜✨🌙</div>
+
+    <button onclick="openChat()">
+        Open Your Gift 🎁
+    </button>
+
+</div>
+
+<div class="phone" id="phone">
+
+    <div class="header">
+        💜 Huimang ✨
+    </div>
+
+    <div class="chat" id="chat"></div>
+
+</div>
+
+<script>
+
+function openChat(){
+    document.getElementById("card").style.display = "none";
+    document.getElementById("phone").style.display = "flex";
+    startChat();
+}
+
+const messages = [
+
+"heyyyy beautiful 👀💜",
+
+"happy birthdayyyyy 🥳✨",
+
+"I hope you're smiling right now 😊",
+
+"because today is YOUR day 🌸💜",
+
+"and the world is a better place because you're in it ✨",
+
+"you've brought so much happiness into my life 🥹",
+
+"your smile honestly deserves its own holiday 😭💜",
+
+"I hope today is filled with love, laughter and cake 🎂",
+
+"and I hope this new year of your life is your best one yet 🌙",
+
+"you deserve every blessing coming your way ✨",
+
+"thank you for being you 💜",
+
+"and thank you for existing 🥹",
+
+"love you always 💌💜"
+
+];
+
+let index = 0;
+
+function startChat(){
+    sendNextMessage();
+}
+
+function createTypingIndicator(){
+
+    const chat = document.getElementById("chat");
+
+    const typing = document.createElement("div");
+
+    typing.className = "message typing";
+    typing.id = "typing";
+
+    typing.innerText = "typing";
+
+    chat.appendChild(typing);
+
+    chat.scrollTop = chat.scrollHeight;
+
+    let dots = 0;
+
+    const interval = setInterval(() => {
+
+        dots = (dots + 1) % 4;
+
+        typing.innerText = "typing" + ".".repeat(dots);
+
+    }, 400);
+
+    return {typing, interval};
+}
+
+function sendNextMessage(){
+
+    if(index >= messages.length) return;
+
+    const chat = document.getElementById("chat");
+
+    const {typing, interval} = createTypingIndicator();
+
+    setTimeout(() => {
+
+        clearInterval(interval);
+
+        typing.remove();
+
+        const msg = document.createElement("div");
+
+        msg.className = "message me";
+        msg.innerText = messages[index];
+
+        chat.appendChild(msg);
+
+        chat.scrollTop = chat.scrollHeight;
+
+        index++;
+
+        setTimeout(sendNextMessage, 1100);
+
+    }, 1500);
+}
+
+</script>
+
+</body>
+</html>
